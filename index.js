@@ -63,8 +63,30 @@ function getPlayerChoice()
     return convertedChoice;
 }
 
+function playGame(cChoice, pChoice)
+{
+    if (cChoice == 0 && pChoice == 1 || cChoice == 1 && pChoice == 2 || cChoice == 2 && pChoice == 0)
+    {
+        alert("You win!");
+        return 1;
+    }
+    else if (cChoice == 0 && pChoice == 2 || cChoice == 1 && pChoice == 0 || cChoice == 2 && pChoice == 1)
+    {
+        alert("You lose!");
+        return 2;
+    }
+    else
+    {
+        alert("Draw!");
+        return 0;
+    }
+}
+
 let cChoice = getComputerChoice();
 let pChoice = getPlayerChoice();
 
 console.log(cChoice);
 console.log(pChoice);
+
+let game = playGame(cChoice, pChoice);
+console.log(game);
