@@ -29,41 +29,38 @@ function getComputerChoice()
 
 function getPlayerChoice()
 {
-    let choice = prompt("Pick(rock, paper, scissors): ");
+    let choice = prompt("Pick(rock, paper, scissors): ").toUpperCase();
     while(true)
     {
-        if (choice == "rock" || choice == "Rock" || choice == "paper" || choice == "Paper" || choice == "scissors" || choice == "Scissors")
+        if (choice == "ROCK" || choice == "PAPER" || choice == "SCISSORS")
         {
             break;
         }
         else
         {
-            choice = prompt("Pick(rock, paper, scissors): ");
+            choice = prompt("Pick(rock, paper, scissors): ").toUpperCase();
         }
     }
 
     let convertedChoice = 0;
     switch(choice)
     {
-        case "Rock":
-        case "rock":
+        case "ROCK":
             convertedChoice = 0;
             break;
         
-        case "Paper":
-        case "paper":
+        case "PAPER":
             convertedChoice = 1;
             break;
 
-        case "Scissors":
-        case "scissors":
+        case "SCISSORS":
             convertedChoice = 2;
             break;
     }
     return convertedChoice;
 }
 
-function playGame(cChoice, pChoice)
+function playRound(cChoice, pChoice)
 {
     if (cChoice == 0 && pChoice == 1 || cChoice == 1 && pChoice == 2 || cChoice == 2 && pChoice == 0)
     {
@@ -82,11 +79,41 @@ function playGame(cChoice, pChoice)
     }
 }
 
-let cChoice = getComputerChoice();
-let pChoice = getPlayerChoice();
+function playGame()
+{
+    let cWins = 0;
+    let pWins = 0;
+    for (let gamesPlayed = 0; gamesPlayed < 5; ++gamesPlayed)
+    {
+        let cChoice = getComputerChoice();
+        let pChoice = getPlayerChoice();
+        let game = playRound(cChoice, pChoice);
+        if (game == 1)
+        {
+            ++pWins;
+        }
+        else if(game == 2)
+        {
+            ++cWins;
+        }
+        else
+        {
+            alert("Draws aren't added");
+        }
+    }
 
-console.log(cChoice);
-console.log(pChoice);
+    if (pWins > cWins)
+    {
+        alert("You won the most games! You're the all time winner!!!");
+    }
+    else if (cWins > pWins)
+    {
+        alert("The computer won the most games... but not for long!");
+    }
+    else
+    {
+        alert("Total Draw! Try again and make this a Total Win!");
+    }
+}
 
-let game = playGame(cChoice, pChoice);
-console.log(game);
+playGame();
