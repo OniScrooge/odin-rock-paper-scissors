@@ -27,22 +27,9 @@ function getComputerChoice()
     return Math.floor(Math.random() * 3);1
 }
 
-function getPlayerChoice()
+function getPlayerChoice(choice)
 {
-    let choice = prompt("Pick(rock, paper, scissors): ").toUpperCase();
-    while(true)
-    {
-        if (choice == "ROCK" || choice == "PAPER" || choice == "SCISSORS")
-        {
-            break;
-        }
-        else
-        {
-            choice = prompt("Pick(rock, paper, scissors): ").toUpperCase();
-        }
-    }
-
-    let convertedChoice = 0;
+    var convertedChoice = 0;
     switch(choice)
     {
         case "ROCK":
@@ -60,60 +47,63 @@ function getPlayerChoice()
     return convertedChoice;
 }
 
-function playRound(cChoice, pChoice)
+let pWins = 0;
+let cWins = 0;
+
+function playFive(gameResult)
 {
+    if (gameResult == 1)
+    {
+        ++pWins;
+    }
+    else if (gameResult == 2)
+    {
+        ++cWins;
+    }
+    else
+    {
+        ++pWins;
+        ++cWins;
+    }
+
+    if (pWins + cWins >= 5)
+    {
+        alert("Game over!")
+        if (pWins > cWins)
+        {
+            alert("You are victorious!");
+        }
+        else if (cWins > pWins)
+        {
+            alert("The computer was victorious :(");
+        }
+        else
+        {
+            alert("Complete DRAW!");
+        }
+        pWins = 0;
+        cWins = 0;
+    }
+}
+
+function playRound(choice)
+{
+    var cChoice = getComputerChoice();
+    var pChoice = getPlayerChoice(choice);
+
     if (cChoice == 0 && pChoice == 1 || cChoice == 1 && pChoice == 2 || cChoice == 2 && pChoice == 0)
     {
         alert("You win!");
-        return 1;
+        playFive(1);
     }
     else if (cChoice == 0 && pChoice == 2 || cChoice == 1 && pChoice == 0 || cChoice == 2 && pChoice == 1)
     {
         alert("You lose!");
-        return 2;
+        playFive(2);
     }
     else
     {
         alert("Draw!");
-        return 0;
+        playFive(0);
     }
 }
-
-function playGame()
-{
-    let cWins = 0;
-    let pWins = 0;
-    for (let gamesPlayed = 0; gamesPlayed < 5; ++gamesPlayed)
-    {
-        let cChoice = getComputerChoice();
-        let pChoice = getPlayerChoice();
-        let game = playRound(cChoice, pChoice);
-        if (game == 1)
-        {
-            ++pWins;
-        }
-        else if(game == 2)
-        {
-            ++cWins;
-        }
-        else
-        {
-            alert("Draws aren't added");
-        }
-    }
-
-    if (pWins > cWins)
-    {
-        alert("You won the most games! You're the all time winner!!!");
-    }
-    else if (cWins > pWins)
-    {
-        alert("The computer won the most games... but not for long!");
-    }
-    else
-    {
-        alert("Total Draw! Try again and make this a Total Win!");
-    }
-}
-
-playGame();

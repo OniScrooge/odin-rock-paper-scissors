@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
-    <script src="index.js"></script>
+    <script src="./index.js"></script>
 </head>
 <body>
+    <div id="buttonContainer">
+        <button id="rockButton">ROCK</button>
+        <button id="paperButton">PAPER</button>
+        <button id="scissorsButton">SCISSORS</button>
+    </div>
+    <script>
+        const rockButton = document.getElementById('rockButton');
+        const paperButton = document.getElementById('paperButton');
+        const scissorsButton = document.getElementById('scissorsButton');
+
+        rockButton.addEventListener('click', playRound, rockButton.textContent);
+        paperButton.addEventListener('click', playRound, paperButton.textContent);
+        scissorsButton.addEventListener('click', playRound, scissorsButton.textContent);
+    </script>
 </body>
 </html>
