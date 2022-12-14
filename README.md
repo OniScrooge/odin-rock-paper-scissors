@@ -1,6 +1,6 @@
 # odin-rock-paper-scissors
 Play "Rock Paper Scissors" with a simple UI until a winner is declared.
-[Play Game](oniscrooge.github.io/odin-rock-paper-scissors)
+[Play Game](https://oniscrooge.github.io/odin-rock-paper-scissors/)
 
 # What I learned
 
